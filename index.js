@@ -23,8 +23,8 @@ const pool = new Pool({
   user: 'postgres',
   database: 'chatapp',
   password: '1234',
-  host: '127.0.0.1',      // FOR LOCAL
-  //host: 'postgres',       // FOR DOCKER
+  //host: '127.0.0.1',      // FOR LOCAL
+  host: 'postgres',       // FOR DOCKER
   port: 5432,
 });
 
