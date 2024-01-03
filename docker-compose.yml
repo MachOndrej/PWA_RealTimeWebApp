@@ -2,6 +2,7 @@ version: "3.9"
 services:
   postgres:
     image: postgres:16
+    container_name: newpostgres_container
     environment:
       POSTGRES_DB: chatapp
       POSTGRES_USER: postgres
@@ -14,10 +15,20 @@ services:
 
 
   app:
-    build:
-      context: .
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    image: newchat_app:v4
+    container_name: new_chatapp_containter
     depends_on:
       - postgres
+    environment:
+      #DATABASE_URL: postgres://postgres:1234@postgres:5432/chatapp
+      DATABASE_NAME: chatapp
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: 1234
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
     ports:
       - '3000:3000'
         

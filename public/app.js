@@ -1,6 +1,5 @@
 // Establish a WebSocket connection to the server; assumes the server is running on ws://localhost:3500
-//const socket = io('ws://localhost:3500')    //adresa deploymentu = definice socketu
-const socket = io('https://chatapp-4836.onrender.com')    //adresa deploymentu = definice socketu
+const socket = io('ws://localhost:3000')    //adresa deploymentu = definice socketu
 
 // User input
 const msgInput = document.querySelector('#message')
