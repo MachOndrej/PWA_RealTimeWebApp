@@ -1,5 +1,5 @@
 -- Create the database
--- CREATE DATABASE chatapp;
+CREATE DATABASE IF NOT EXISTS chatapp;
 
 -- Switch to the newly created database
 -- \c chatapp;
