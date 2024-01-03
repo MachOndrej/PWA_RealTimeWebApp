@@ -1,5 +1,5 @@
 # Real-time Chat Web App
-Online deploy using Render (without database):  
+The application is deployed online using Render (without a database):  
 https://chatapp-4836.onrender.com/  
 
 ## Running the PWA_RealTimeWebApp Locally with Docker
