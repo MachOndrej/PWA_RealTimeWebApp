@@ -19,6 +19,7 @@ const ADMIN = "Admin"
 const app = express()
 
 // NOTE: PostgreSQL creates a superuser by default on localhost using the OS username.
+// Set up db name, user, password, ...
 // const pool = new Pool({
 //   user: 'postgres',
 //   database: 'chatapp',
