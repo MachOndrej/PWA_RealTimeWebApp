@@ -1,6 +1,30 @@
 # Real-time Chat Web App
+Online deploy using Render (without database):  
+https://chatapp-4836.onrender.com/  
 
-This repository contains a real-time chat web application built with the following technologies:
+## Running the PWA_RealTimeWebApp Locally with Docker
+
+To run the PWA_RealTimeWebApp locally using Docker, follow these steps:
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/MachOndrej/PWA_RealTimeWebApp.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd PWA_RealTimeWebApp
+    ```
+
+3. Use Docker Compose to start the application:
+
+    ```bash
+    docker-compose up
+    ```
+
+This will download the necessary Docker images, set up the environment, and start the PWA_RealTimeWebApp. Make sure Docker and Docker Compose are installed on your machine before running these commands.
 
 ## Backend
 - Node.js
@@ -22,7 +46,7 @@ To run the project locally or with Docker, make a minor modification in `index.j
 ## Database Setup
 The basic database configuration is outlined in `init.sql`.
 
-## Modification for Local and Docker Execution
+## Modification for Local and Docker Execution (branch localdocker)
 For local and Docker execution, make the following change in `index.js`:
 
 ```javascript
