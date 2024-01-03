@@ -2,7 +2,7 @@ version: "3.9"
 services:
   postgres:
     image: postgres:16
-    container_name: newpostgres_container
+    container_name: db_postgres_container
     environment:
       POSTGRES_DB: chatapp
       POSTGRES_USER: postgres
@@ -11,24 +11,18 @@ services:
       - '5432:5432'
     volumes:
       - app-db:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql   # db tables init
 
 
   app:
-    #build:
-    #  context: .
-    #  dockerfile: Dockerfile
-    image: newchat_app:v4
-    container_name: new_chatapp_containter
+    build:
+     context: .
+     dockerfile: Dockerfile
+    container_name: chatapp_containter
     depends_on:
       - postgres
     environment:
-      #DATABASE_URL: postgres://postgres:1234@postgres:5432/chatapp
-      DATABASE_NAME: chatapp
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: 1234
-      DATABASE_HOST: postgres
-      DATABASE_PORT: 5432
+      DATABASE_URL: postgres://postgres:1234@postgres:5432/chatapp  # contains all information db needs
     ports:
       - '3000:3000'
         

@@ -19,17 +19,17 @@ const ADMIN = "Admin"
 const app = express()
 
 // NOTE: PostgreSQL creates a superuser by default on localhost using the OS username.
-const pool = new Pool({
-  user: 'postgres',
-  database: 'chatapp',
-  password: '1234',
-  //host: '127.0.0.1',      // FOR LOCAL
-  host: 'postgres',       // FOR DOCKER
-  port: 5432,
-});
 // const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL,
+//   user: 'postgres',
+//   database: 'chatapp',
+//   password: '1234',
+//   //host: '127.0.0.1',      // FOR LOCAL
+//   host: 'postgres',       // FOR DOCKER
+//   port: 5432,
 // });
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 
 // redirected to static public dir
 app.use(express.static(path.join(__dirname, "public")))
