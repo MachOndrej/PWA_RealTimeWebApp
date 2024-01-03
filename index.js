@@ -27,6 +27,7 @@ const pool = new Pool({
 // redirected to static public dir
 app.use(express.static(path.join(__dirname, "public")))
 
+// check if listening on selected PORT and log the PORT
 const expressServer = app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
 })
@@ -39,6 +40,8 @@ const UsersState = {
   }
 } 
 
+// creating  Socket.IO server for bidirectional communication between 
+//the server and connected clients using websockets (with setting CORS policy)
 const io = new Server(expressServer, {
   cors: {
       origin: process.env.NODE_ENV === "production" ? false : ["http://localhost:5500", "http://127.0.0.1:5500"]
@@ -105,7 +108,7 @@ io.on('connection', socket => {
       console.error('Error fetching old messages from database', error);
     }
 
-    // To everyone else
+    // To everyone (else except user) broadcast
     socket.broadcast.to(user.room).emit('message', buildMsg(ADMIN, `${user.name} has joined the room.`))
     // Update user list for room
     io.to(user.room).emit('userList', {
@@ -147,7 +150,7 @@ io.on('connection', socket => {
     const room = getUser(socket.id)?.room
     const time = new Date();
    
-    // vraci jmeno a text zpravy
+    // return name and message to room
     if (room) {
       io.to(room).emit('message', buildMsg(name, text));
       //console.log(`Name: ${name}, Text: ${text}, Room: ${room}`);
@@ -174,6 +177,7 @@ io.on('connection', socket => {
 
 
 // FUNCTIONS
+// Compose massage
 function buildMsg(name, text, customTime = null) {
   //const time = new Date().toISOString();
   const time = customTime || new Date().toISOString();
